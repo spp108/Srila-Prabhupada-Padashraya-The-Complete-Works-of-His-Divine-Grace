@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * CORE DATA CONFIGURATION
- * All text, music, and images for the 8 initial walls.
  */
 const WALL_DATA = {
   1: { title: "The Complete Works of His Divine Grace", file: "/guruvashtakam.mp3", img: "/logo.png", text: "His Divine Grace’s literary legacy is a transcendental compass for the lost soul. Within these pages, the absolute truth descends as sound, offering a lifeline of pure devotion. We humbly present these works as an eternal offering, hoping to illuminate the path back to the lotus feet of the Divine." },
@@ -16,10 +15,6 @@ const WALL_DATA = {
   8: { title: "Sri Sri Radha-Krishna", file: "/govindam.mp3", img: "/radhakrishna.png", text: "The source of all beauty and the goal of all existence, Sri Sri Radha Krishna reside eternally in the groves of Vrindavan. Their love is the highest truth, the origin of every soul’s longing. We conclude our darshan here, surrendering everything at Their lotus feet in silent, humble prayer." }
 };
 
-/**
- * VAULT LINKS - INTERNET ARCHIVE REPOSITORIES
- * These links lead directly to your specific IA collections.
- */
 const VAULT_LINKS = {
   Gaudiya_Books: "https://archive.org/details/srila-prabhupada-padashraya-subvault-gaudiya-v2",
   ISKCON_Media: "https://archive.org/details/srila-prabhupada-padashraya-subvault-media-images",
@@ -31,7 +26,6 @@ const flowerAssets = ['/petals/marigold_gold.png', '/petals/marigold_orange.png'
 
 /**
  * PETAL & ABHISHEKA COMPONENTS
- * Optimized for performance using React.memo
  */
 const Petal = memo(({ p, onComplete }) => (
   <motion.img 
@@ -63,17 +57,13 @@ const FlowerAbhisheka = ({ isActive }) => {
 };
 
 export default function App() {
-  // Navigation States
   const [wallLevel, setWallLevel] = useState(0); 
   const [isOpening, setIsOpening] = useState(false);
   const [showNext, setShowNext] = useState(false);
-  
-  // Vault States
   const [passwordInput, setPasswordInput] = useState("");
   const [isVaultUnlocked, setIsVaultUnlocked] = useState(false);
   const [vaultSection, setVaultSection] = useState("entrance");
 
-  // Audio Refs
   const conch = useRef(new Audio("/conch.mp3"));
   const bhajan = useRef(new Audio(""));
 
@@ -113,7 +103,7 @@ export default function App() {
     return "Enter The Vault";
   };
 
-  // --- RENDER LOGIC: THE VAULT (AFTER 8 WALLS) ---
+  // --- VAULT RENDER ---
   if (wallLevel > 8) {
     if (!isVaultUnlocked) {
       return (
@@ -133,19 +123,33 @@ export default function App() {
       <div className="wall-container vault-internal">
         <FlowerAbhisheka isActive={true} />
         <div className="title-wrapper">
-           <h2 className="acharya-title">{vaultSection === "entrance" ? "Mangala Charana" : `${vaultSection.replace('_', ' ')} Archive`}</h2>
+           <h2 className="acharya-title">{vaultSection === "entrance" ? "Mangala Charana Prayers" : `${vaultSection.replace('_', ' ')} Archive`}</h2>
         </div>
         
         <div className="vault-main-content">
           {vaultSection === "entrance" ? (
             <div className="entrance-flow">
-              <div className="glorification-box mangala-box">
-                <p className="glorification-text">
-                  vande 'haṁ śrī-guroḥ śrī-yuta-pada-kamalaṁ śrī-gurūn vaiṣṇavāṁś ca<br/>
-                  śrī-rūpaṁ sāgrajātaṁ saha-gaṇa-raghunāthānvitaṁ taṁ sa-jīvam<br/><br/>
-                  sādvaitaṁ sāvadhūtaṁ parijana-sahitaṁ kṛṣṇa-caitanya-devaṁ<br/>
-                  śrī-rādhā-kṛṣṇa-pādān saha-gaṇa-lalitā-śrī-viśākhānvitaṁś ca
-                </p>
+              <div className="glorification-box mangala-box extended-prayers">
+                <div className="glorification-text">
+                  <p>oṁ ajñāna-timirāndhasya<br/>jñānāñjana-śalākayā<br/>cakṣur unmīlitaṁ yena<br/>tasmai śrī-gurave namaḥ</p>
+                  <p>śrī-caitanya-mano-'bhīṣṭaṁ<br/>sthāpitaṁ yena bhū-tale<br/>svayaṁ rūpaḥ kadā mahyaṁ<br/>dadāti sva-padāntikam</p>
+                  <p className="translation-text">I was born in the darkest ignorance, and my spiritual master opened my eyes with the torch of knowledge. I offer my respectful obeisances unto him. When will Śrīla Rūpa Gosvāmī Prabhupāda, who has established within this material world the mission to fulfill the desire of Lord Caitanya, give me shelter under his lotus feet?</p>
+                  
+                  <p>vande 'haṁ śrī-guroḥ śrī-yuta-pada-kamalaṁ śrī-gurūn vaiṣṇavāṁś ca<br/>śrī-rūpaṁ sāgrajātaṁ saha-gaṇa-raghunāthānvitaṁ taṁ sa-jīvam<br/>sādvaitaṁ sāvadhūtaṁ parijana-sahitaṁ kṛṣṇa-caitanya-devaṁ<br/>śrī-rādhā-kṛṣṇa-pādān saha-gaṇa-lalitā-śrī-viśākhānvitāṁś ca</p>
+                  <p className="translation-text">I offer my respectful obeisances unto the lotus feet of my spiritual master and unto the feet of all Vaiṣṇavas... [and] to Śrīmatī Rādhārāṇī and Śrī Kṛṣṇa along with Their associates Śrī Lalitā and Viśākhā.</p>
+                  
+                  <p>he kṛṣṇa karuṇā-sindho<br/>dīna-bandho jagat-pate<br/>gopeśa gopikā-kānta<br/>rādhā-kānta namo 'stu te</p>
+                  <p className="translation-text">O my dear Kṛṣṇa, You are the friend of the distressed and the source of creation. You are the master of the gopīs and the lover of Rādhārāṇī. I offer my respectful obeisances unto You.</p>
+                  
+                  <p>tapta-kāñcana-gaurāṅgi<br/>rādhe vṛndāvaneśvari<br/>vṛṣabhānu-sute devi<br/>praṇamāmi hari-priye</p>
+                  <p className="translation-text">I offer my respects to Rādhārāṇī, whose bodily complexion is like molten gold and who is the Queen of Vṛndāvana...</p>
+                  
+                  <p>vāñchā-kalpatarubhyaś ca<br/>kṛpā-sindhubhya eva ca<br/>patitānāṁ pāvanebhyo<br/>vaiṣṇavebhyo namo namaḥ</p>
+                  
+                  <p>śrī-kṛṣṇa-caitanya prabhu-nityānanda<br/>śrī-advaita gadādhara śrīvāsādi-gaura-bhakta-vṛnda</p>
+                  
+                  <p className="maha-mantra">hare kṛṣṇa hare kṛṣṇa kṛṣṇa kṛṣṇa hare hare<br/>hare rāma hare rāma rāma rāma hare hare</p>
+                </div>
               </div>
               <button className="proceed-btn" onClick={() => setVaultSection("Gaudiya_Books")}>Open The Archives</button>
             </div>
@@ -158,7 +162,6 @@ export default function App() {
                   </button>
                 ))}
               </nav>
-              
               <div className="drive-container">
                 <div className="drive-header"><span>Resource</span><span>Source</span><span>Action</span></div>
                 <div className="drive-list">
@@ -168,7 +171,7 @@ export default function App() {
                       <a href={VAULT_LINKS[vaultSection]} target="_blank" rel="noopener noreferrer" className="download-btn">📥 Open Folder</a>
                     </div>
                 </div>
-                <div className="ia-footer-note">Eternally preserved via Internet Archive. Additions sync automatically.</div>
+                <div className="ia-footer-note">Eternally preserved via Internet Archive.</div>
               </div>
             </div>
           )}
@@ -177,10 +180,9 @@ export default function App() {
     );
   }
 
-  // --- RENDER LOGIC: THE DARSHAN WALLS (0-8) ---
+  // --- DARSHAN RENDER ---
   return (
     <div className="wall-container">
-      {/* Sudarshana Chakras */}
       <motion.img src="/chakra.png" className="chakra-icon top-l" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} />
       <motion.img src="/chakra.png" className="chakra-icon top-r" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} />
       <motion.img src="/chakra.png" className="chakra-icon bot-l" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} />
@@ -193,30 +195,25 @@ export default function App() {
           </motion.div>
         ) : (
           <motion.div key={`wall-${wallLevel}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="wall-content-wrapper">
-            
             {wallLevel !== 1 && (
               <div className="title-wrapper">
                 <h2 className="acharya-title">{WALL_DATA[wallLevel].title}</h2>
               </div>
             )}
-
             <div className="darshan-stage">
               <FlowerAbhisheka isActive={isOpening} />
               <img src={WALL_DATA[wallLevel].img} alt="Darshan" />
               <motion.div initial={{ scaleX: 1 }} animate={{ scaleX: 0 }} transition={{ duration: 8, ease: "easeInOut" }} onAnimationComplete={() => setShowNext(true)} className="curtain-panel left" />
               <motion.div initial={{ scaleX: 1 }} animate={{ scaleX: 0 }} transition={{ duration: 8, ease: "easeInOut" }} className="curtain-panel right" />
             </div>
-
             {wallLevel === 1 && (
               <div className="title-wrapper logo-below">
                 <h2 className="acharya-title">{WALL_DATA[wallLevel].title}</h2>
               </div>
             )}
-
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 3 }} className="glorification-box">
               <p className="glorification-text">{WALL_DATA[wallLevel].text}</p>
             </motion.div>
-            
             <div className="footer-area">
               {showNext && <button className="proceed-btn" onClick={triggerNextWall}>{getButtonText()}</button>}
             </div>
