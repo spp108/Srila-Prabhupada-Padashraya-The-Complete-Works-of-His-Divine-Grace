@@ -15,11 +15,12 @@ const WALL_DATA = {
   8: { title: "Sri Sri Radha-Krishna", file: "/govindam.mp3", img: "/radhakrishna.png", text: "The source of all beauty and the goal of all existence, Sri Sri Radha Krishna reside eternally in the groves of Vrindavan. Their love is the highest truth, the origin of every soul’s longing. We conclude our darshan here, surrendering everything at Their lotus feet in silent, humble prayer." }
 };
 
+// Updated with your new subvault identifiers
 const VAULT_LINKS = {
-  Gaudiya_Books: "https://archive.org/details/srila-prabhupada-padashraya-subvault-gaudiya-v2",
-  ISKCON_Media: "https://archive.org/details/srila-prabhupada-padashraya-subvault-media-images",
-  SP_Photos: "https://archive.org/details/srila-prabhupada-padashraya-subvault-photos",
-  SP_Vani: "https://archive.org/details/srila-prabhupada-padashraya-subvault-vani"
+  Gaudiya_Books: "https://archive.org/details/spp-gaudiya-books",
+  SP_Pictures: "https://archive.org/details/spp-pictures",
+  ISKCON_Media: "https://archive.org/details/spp-iskcon-media",
+  SP_Vani: "https://archive.org/details/spp-vani"
 };
 
 const flowerAssets = ['/petals/marigold_gold.png', '/petals/marigold_orange.png', '/petals/lotus_pink.png', '/petals/jasmine_white.png'];
